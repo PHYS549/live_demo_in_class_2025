@@ -23,17 +23,17 @@ planetary_gravity = {
     "Moon": 1.62,
     "Mars": 3.71
 }
-
 def compute_fall_time(height, gravity=10):
     """
     Compute the time (in seconds) for an object to fall
     from a given height under constant gravity.
     Equation: time = sqrt(2 * height / gravity).
     """
-    return math.sqrt(2 * height / 2 * gravity)
+    return math.sqrt(2 * height / gravity)
 
 # TODO Feature A: Implement a function compute_final_velocity(height, gravity).
-# def compute_final_velocity(...):
+def compute_final_velocity(height, gravity=9.8):
+    return (2 * gravity * height)**0.5
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -44,6 +44,11 @@ if __name__ == "__main__":
         type=float,
         default=10.0,
         help="Height in meters from which the object is dropped."
+    )
+    parser.add_argument(
+        "--planet",
+        choices=["Earth", "Moon", "Mars"]
+        help="Select which planet's gravity to use (Earth=9.8, Moon=1.62, Mars=3.71)."
     )
 
     # TODO Feature B: add optional '--planet' argument to choose Earth, Moon, or Mars
@@ -58,12 +63,13 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # If planet is specified, override gravity
-    gravity = 9.8
+    gravity = planetary_gravity[args.planet]
     # e.g., if args.planet: gravity = planetary_gravity[args.planet]
 
     time_to_fall = compute_fall_time(args.height, gravity)
+    final_vel = compute_final_velocity(args.height, gravity)
     print(f"Height: {args.height} m")
     print(f"Gravity: {gravity} m/s^2")
     print(f"Time to fall: {time_to_fall:.2f} seconds")
-
+    print(f"Final velocity: {final_vel:.2f} meter/seconds")
     # If final velocity is implemented, optionally print that, too.
