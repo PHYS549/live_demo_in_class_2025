@@ -24,12 +24,13 @@ planetary_gravity = {
     "Mars": 3.71
 }
 
-def compute_fall_time(height, gravity=9.8):
+def compute_fall_time(height, gravity):
     """
     Compute the time (in seconds) for an object to fall
     from a given height under constant gravity.
     Equation: time = sqrt(2 * height / gravity).
     """
+
     return math.sqrt(2 * height / gravity)
 
 # TODO Feature A: Implement a function compute_final_velocity(height, gravity).
@@ -45,6 +46,11 @@ if __name__ == "__main__":
         default=10.0,
         help="Height in meters from which the object is dropped."
     )
+    parser.add_argument(
+        "--planet",
+        choices=["Earth", "Moon", "Mars"]
+        help="Select which planet's gravity to use (Earth=9.8, Moon=1.62, Mars=3.71)."
+    )
 
     # TODO Feature B: add optional '--planet' argument to choose Earth, Moon, or Mars
     # parser.add_argument(
@@ -58,7 +64,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # If planet is specified, override gravity
-    gravity = 9.8
+    gravity = planetary_gravity[args.planet]
     # e.g., if args.planet: gravity = planetary_gravity[args.planet]
 
     time_to_fall = compute_fall_time(args.height, gravity)
