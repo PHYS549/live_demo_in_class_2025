@@ -17,7 +17,7 @@ C.D. Tunnell 2025
 import argparse
 import math
 
-# Dictionary of planetary gravities (m/s^2)
+# Dictionary of planetary gravities (m/s^2) - we only use metric mofo!
 planetary_gravity = {
     "Earth": 9.8,
     "Moon": 1.62,
