@@ -10,6 +10,8 @@ Exercise Features:
 
 Usage Example:
     python fall_time.py --height 10.0
+
+C.D. Tunnell 2025
 """
 
 import argparse
