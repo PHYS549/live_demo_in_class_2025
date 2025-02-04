@@ -24,13 +24,13 @@ planetary_gravity = {
     "Mars": 3.71
 }
 
-def compute_fall_time(height, gravity=9.8):
+def compute_fall_time(height, gravity=10):
     """
     Compute the time (in seconds) for an object to fall
     from a given height under constant gravity.
     Equation: time = sqrt(2 * height / gravity).
     """
-    return math.sqrt(2 * height / gravity)
+    return math.sqrt(2 * height / 2 * gravity)
 
 # TODO Feature A: Implement a function compute_final_velocity(height, gravity).
 # def compute_final_velocity(...):
